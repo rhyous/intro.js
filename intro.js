@@ -949,7 +949,7 @@
         if (self._introItems.length - 1 == self._currentStep && typeof (self._introCompleteCallback) === 'function') {
           self._introCompleteCallback.call(self);
         }
-
+        self._introSkipCallback.call(self);
         _exitIntro.call(self, self._targetElement);
       };
 
@@ -1659,6 +1659,14 @@
         this._introExitCallback = providedCallback;
       } else {
         throw new Error('Provided callback for onexit was not a function.');
+      }
+      return this;
+    },
+    onskip: function(providedCallback) {
+      if (typeof (providedCallback) === 'function') {
+        this._introSkipCallback = providedCallback;
+      } else {
+        throw new Error('Provided callback for onskip was not a function.');
       }
       return this;
     },
